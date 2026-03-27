@@ -16,4 +16,8 @@ const circulo = {
 	}
 };	
 
-circulo.desenhar();
+if(document.querySelector("circulo")){
+	circulo.desenhar();
+}
+
+
