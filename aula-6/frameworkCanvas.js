@@ -1,4 +1,4 @@
-onst body = document.getElementsByTagName("body")[0];
+const body = document.getElementsByTagName("body")[0];
 const canvas = document.createElement("canvas");
 body.appendChild(canvas);
 const ctx = canvas.getContext("2d");
