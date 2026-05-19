@@ -13,7 +13,7 @@ include ("LeitorSQL.php");
         $listaAtributos = $objSQL->getAtributos($e);
         $atr = "";
         $metodos = "";
-
+        $magico = "";
         foreach ($listaAtributos as $key => $atributos) {
             $tipoPHP = $objSQL->converterTipoPHP($atributos["tipo"]);
             $atr .= "private " . $tipoPHP . " $" . $key . ";\n\t";
@@ -24,6 +24,7 @@ include ("LeitorSQL.php");
             $metodos .= "public function set" . ucfirst($key) . "(\$$key): self {\n";
             $metodos .= "    \$this->$key = \$$key;\n    return \$this;\n}\n\n";
 
+            $magico .= "echo \"$key :\". \$this->$key; \n"; //não funcionou
         }
         $nomeClasse = ucfirst($e);
         $conteudo = <<<CLASS
@@ -31,6 +32,8 @@ include ("LeitorSQL.php");
         class $nomeClasse {
             $atr
         $metodos
+        function toString(){
+        }
         }
         CLASS;
 
