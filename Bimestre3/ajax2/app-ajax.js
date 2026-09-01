@@ -6,17 +6,36 @@ document.addEventListener('DOMContentLoaded', () => {
         const evento = elem.getAttribute('app-event') || 'click';
 
         elem.addEventListener(evento, async(e) => {
-                 e.preventDefault();
+            e.preventDefault();
             let urlFinal = url;
             if(elem.name && elem.value !== undefined)
                 urlFinal= url+"?"+elem.name+"="+encodeURIComponent(elem.value);
-            console.log('urlFinal', urlFinal);
+                console.log('urlFinal', urlFinal);
             try{
                 const resposta = await fetch(urlFinal);
                 const conteudoHTML = await resposta.text();
                 const elementoAlvo = document.querySelector(targetId);
                 if(elementoAlvo) {
                     elementoAlvo.innerHTML = conteudoHTML;
+                    const senha = document.querySelector("senha");
+                    const respostaSenha = document.querySelector("RespostaSenha");
+
+                    senha.addEventListener('input', () =>{
+                        const valor = senha.value;
+                        const tamanho = valor.length >= 8;
+                        const maiuscula = /[A-Z]/.test(valor);
+                        const numero = /[0-9]/.test(valor);
+                        const especial = /[!@#$%^&*]/.test(valor);
+
+
+                        if ($tamanho && $maiuscula && numero && especial) {
+                             respostaSenha.textContent = "Senha válida!";
+                        }else{
+                            respostaSenha.textContent = "Senha inválida!";
+                        }
+
+                    })
+        
                 }else{
                     console.error('O elemento '+targetId+' não existe');
                 }
@@ -27,4 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     });
+
+
 });
