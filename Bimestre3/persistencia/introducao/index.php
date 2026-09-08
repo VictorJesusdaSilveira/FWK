@@ -72,4 +72,9 @@ function gerarSQL(object $objeto):array{
     return ["sql "=>$sql, "colunas"=>$dadosFiltrados];
 }
 
+$resultado = gerarSQL($usuario);
+print "<pre>";
+print_r($resultado);
+print "</pre>";
+
 ?>
