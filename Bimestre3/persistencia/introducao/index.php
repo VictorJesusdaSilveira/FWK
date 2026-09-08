@@ -61,7 +61,7 @@ print "<pre>";
 print_r($colunasValores);
 print "</pre>";
 
-function gerarSQL(object $objeto):string{
+function gerarSQL(object $objeto):array{
     $tabela = pegarNomeTabela($objeto);
     $dados = pegarDadosDasColunas($objeto);
     $dadosFiltrados = array_filter($dados, fn($v) => $v !== null);
