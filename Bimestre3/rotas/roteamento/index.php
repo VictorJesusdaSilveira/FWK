@@ -34,7 +34,7 @@ switch ($url) {
         print "Resultado da divisão: " . $calc->dividir($a, $b);
         break;
     
-    case "criar-objeto"":
+    case "criar-objeto":
         $nome = $_GET["nome"] ?? "Objeto padrão";
         $obj = new ObjetoMensagem($nome);
         print "<h1>" . $obj->criar() . "</h1>";
